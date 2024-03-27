@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-deployment-app
+  template:
+    metadata:
+      labels:
+        app: todo-deployment-app
+    spec:
+      containers:
+        - name: todo-deployment-app
+          image: todo-backend
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres:5432/todo"
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-secret
+                  key: POSTGRES_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-secret
+                  key: POSTGRES_PASSWORD
+          ports:
+            - containerPort: 8080
