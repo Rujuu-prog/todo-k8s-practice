@@ -34,3 +34,11 @@ This project is a Todo application built with Spring Boot, using PostgreSQL as t
    ```
 
 ## Usage
+
+### Minikube Dashboard
+
+To access the Minikube Dashboard, which provides a web-based Kubernetes user interface, you can use the following command:
+
+```bash
+minikube dashboard
+```
