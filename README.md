@@ -12,8 +12,8 @@ This project is a Todo application built with Spring Boot, using PostgreSQL as t
 
 1. Clone the repository.
    ```bash
-   git clone https://example.com/your-repo.git
-   cd your-repo
+   git clone git@github.com:Rujuu-prog/todo-k8s-practice.git
+   cd todo-k8s-practice
    ```
 2. Set up Secrets.
    ```bash
