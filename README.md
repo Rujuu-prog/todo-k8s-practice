@@ -26,16 +26,12 @@ This project is a Todo application built with Spring Boot, using PostgreSQL as t
    ```
 4. Start Skaffold.
    ```bash
-   skaffold dev
-   ```
-5. Allow external access to applications.
-   ```bash
-   minikube tunnel
+   skaffold dev --port-forward
    ```
 
 ## Usage
 
-Access the Todo application at `http://127.0.0.1`.
+Access the Todo application at `http://127.0.0.1:5173`.
 
 ### Minikube Dashboard
 
