@@ -28,9 +28,15 @@ This project is a Todo application built with Spring Boot, using PostgreSQL as t
    ```bash
    skaffold dev
    ```
-5. Start the application.
+5. Allow external access to the backend application.
+   This will open your default browser and navigate to the backend service. It enables you to interact with the backend API of the Todo application.
    ```bash
    minikube service todo-deployment-app
+   ```
+6. Allow external access to the frontend application.
+   This will open your default browser and navigate to the frontend service. It enables you to interact with the frontend of the Todo application.
+   ```bash
+   minikube service todo-frontend
    ```
 
 ## Usage

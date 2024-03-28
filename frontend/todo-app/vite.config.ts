@@ -1,7 +1,10 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
-// https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    // 外部からアクセスできるようにするため追加
+    host: true,
+  },
   plugins: [vue()],
-})
+});

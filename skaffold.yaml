@@ -8,9 +8,12 @@ build:
       context: . # プロジェクトのルートディレクトリを指定
       docker:
         dockerfile: docker/backend/Dockerfile
-        # Maven プロジェクトの場合、ビルドコンテキストのルートに pom.xml が存在しないため、buildArgs で指定が必要になる場合があります。
         buildArgs:
           JAR_FILE: "backend/target/*.jar"
+    - image: todo-frontend
+      context: frontend/todo-app
+      docker:
+        dockerfile: docker/frontend/Dockerfile
 manifests:
   rawYaml:
     - k8s/postgres-deployment.yaml
@@ -19,3 +22,5 @@ manifests:
     - k8s/secret.yaml
     - k8s/todo-backend-deployment.yaml
     - k8s/todo-backend-service.yaml
+    - k8s/todo-frontend-deployment.yaml
+    - k8s/todo-frontend-service.yaml
