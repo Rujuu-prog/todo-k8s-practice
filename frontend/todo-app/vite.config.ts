@@ -1,18 +1,15 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
-// MinikubeのIPアドレスと、Ingressによって設定されたパス
-const target = "http://127.0.0.1/";
-
 export default defineConfig({
   plugins: [vue()],
   server: {
     host: true,
     proxy: {
-      "/springboot": {
-        target,
+      "/api/todo": {
+        target: "http://todo-deployment-app:8080",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/springboot/, ""),
+        rewrite: (path) => path.replace(/^\/api\/todo/, ""),
       },
     },
   },
