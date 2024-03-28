@@ -24,3 +24,4 @@ manifests:
     - k8s/todo-backend-service.yaml
     - k8s/todo-frontend-deployment.yaml
     - k8s/todo-frontend-service.yaml
+    - k8s/ingress.yaml
