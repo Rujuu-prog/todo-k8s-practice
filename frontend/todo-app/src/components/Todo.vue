@@ -59,7 +59,7 @@
 
             <v-list-item-title>
               <span :class="task.done ? 'text-grey' : 'text-primary'">{{
-                task.text
+                task.content
               }}</span>
             </v-list-item-title>
 
@@ -83,21 +83,18 @@
 <script lang="ts" setup>
 import { ref, computed, onMounted } from "vue";
 import getTodos from "../lib/getTodos";
+import { Todo } from "../types/todo";
 
-interface Task {
-  done: boolean;
-  text: string;
-}
-
-const tasks = ref<Task[]>([
-  { done: false, text: "Foobar" },
-  { done: false, text: "Fizzbuzz" },
-]);
+const tasks = ref<Todo[]>([]);
 const newTask = ref<string>("");
 
 onMounted(async () => {
-  const todos = await getTodos();
-  console.log(todos);
+  try {
+    const todos = await getTodos();
+    tasks.value = todos;
+  } catch (error) {
+    console.error("Todosの取得に失敗しました。", error);
+  }
 });
 
 const completedTasks = computed(
@@ -112,12 +109,18 @@ const progress = computed(
 
 function create() {
   if (newTask.value) {
-    tasks.value.push({ done: false, text: newTask.value });
+    const newTodoId =
+      tasks.value.reduce((acc, task) => Math.max(acc, task.todoId), 0) + 1;
+    tasks.value.push({
+      todoId: newTodoId,
+      content: newTask.value,
+      done: false,
+    });
     newTask.value = "";
   }
 }
 
-function toggleTaskCompletion(task: Task) {
+function toggleTaskCompletion(task: Todo) {
   task.done = !task.done;
 }
 </script>

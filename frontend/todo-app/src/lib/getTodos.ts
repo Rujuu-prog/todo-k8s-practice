@@ -1,9 +1,13 @@
 import axios from "axios";
+import { Todo } from "../types/todo";
 
-export default function getTodos() {
+export default async function getTodos(): Promise<Todo[]> {
   const url = "/api/todo/todos";
-  const todos = axios.get(url).catch((error) => {
+  try {
+    const res = await axios.get<Todo[]>(url);
+    return res.data;
+  } catch (error) {
     console.error(error);
-  });
-  return todos;
+    return [];
+  }
 }

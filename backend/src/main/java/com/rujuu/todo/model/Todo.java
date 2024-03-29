@@ -11,14 +11,14 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoId;
     private String content;
-    private Boolean checked;
+    private Boolean done;
 
     public Todo(){
     }
 
-    public Todo(String content, Boolean checked) {
+    public Todo(String content, Boolean done) {
         this.content = content;
-        this.checked = checked;
+        this.done = done;
     }
 
     public Long getTodoId() {
@@ -33,11 +33,11 @@ public class Todo {
     public void setContent(String content) {
         this.content = content;
     }
-    public Boolean getChecked() {
-        return checked;
+    public Boolean getdone() {
+        return done;
     }
-    public void setChecked(Boolean checked) {
-        this.checked = checked;
+    public void setdone(Boolean done) {
+        this.done = done;
     }
 
     
